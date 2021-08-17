@@ -15,6 +15,8 @@ interface NewsAPI {
         countryCode: String="us",
         @Query("page")
         pageNumber :Int=1,
+        @Query("category")
+        category: String="general",
         @Query("apikey")
          apikey : String=API_KEY
 
@@ -23,8 +25,8 @@ interface NewsAPI {
     @GET("v2/everything")
     suspend fun  searchNews(
 
-        @Query("country")
-        searchQuery: String="us",
+        @Query("q")
+        searchQuery: String,
         @Query("page")
         pageNumber :Int=1,
         @Query("apikey")

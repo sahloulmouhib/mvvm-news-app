@@ -7,6 +7,7 @@
     android:padding="8dp">
 
     <ImageView
+        app:layout_constraintCircleRadius="20dp"
         android:id="@+id/ivArticleImage"
         android:layout_width="160dp"
         android:layout_height="90dp"
