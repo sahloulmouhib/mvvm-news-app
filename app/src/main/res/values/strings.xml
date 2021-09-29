@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVVMNewsApp</string>
+    <string-array name="sort_by">
+        <item>Sort by</item>
+        <item>relevancy</item>
+        <item>popularity</item>
+        <item>published at</item>
+    </string-array>
 </resources>

@@ -1,6 +1,7 @@
-package com.androiddevs.mvvmnewsapp.ui
+package com.androiddevs.mvvmnewsapp.ui.activity
 
 import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -12,14 +13,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.db.ArticleDatabase
+import com.androiddevs.mvvmnewsapp.models.Country
+import com.androiddevs.mvvmnewsapp.preferences.SharedPreferences
 import com.androiddevs.mvvmnewsapp.repository.NewsRepository
-import kotlinx.android.synthetic.main.activity_drawer.*
+import com.androiddevs.mvvmnewsapp.ui.NewsViewModel
+import com.androiddevs.mvvmnewsapp.ui.NewsViewModelProviderFactory
 import kotlinx.android.synthetic.main.activity_drawer.drawerLayout
 import kotlinx.android.synthetic.main.activity_drawer.navView
-import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.activity_news.bottomNavigationView
 import kotlinx.android.synthetic.main.activity_news.newsNavHostFragment
-import kotlinx.android.synthetic.main.item_article_preview.*
+import kotlinx.android.synthetic.main.item_country_preview.view.*
 import kotlinx.android.synthetic.main.temp_drawer.*
 
 class NewsActivity: AppCompatActivity() {
@@ -28,13 +31,22 @@ class NewsActivity: AppCompatActivity() {
 
     lateinit var viewModel : NewsViewModel
 
+
+    lateinit var userSession:SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.temp_drawer)
+        userSession=SharedPreferences(this)
+
+       val country= userSession.getCountry()
+        val countryName=country.name
+        val countryCode=country.code
+        tvChosenCountry.text=countryName
+       ivChosenCountry.setImageResource(country.image)
 
 
         val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelProviderFactory=NewsViewModelProviderFactory(application,newsRepository)
+        val viewModelProviderFactory= NewsViewModelProviderFactory(application,newsRepository)
         viewModel= ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java)
         bottomNavigationView.setupWithNavController(newsNavHostFragment.findNavController())
 
@@ -57,7 +69,11 @@ class NewsActivity: AppCompatActivity() {
                     }
                 }
                 R.id.miAccount-> Toast.makeText(applicationContext,"Clicked ", Toast.LENGTH_SHORT).show()
-                R.id.miLanguage-> Toast.makeText(applicationContext,"Clicked ", Toast.LENGTH_SHORT).show()
+                R.id.miCountry-> {
+                    Intent(this, CountryActivity::class.java).also {
+                        startActivity(it)
+                    }
+                }
             }
             true
 

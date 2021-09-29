@@ -22,7 +22,7 @@
 
         <ImageView
 
-            android:id="@+id/ivArticleImage"
+            android:id="@+id/ivCountryFlag"
             android:layout_width="140dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop" />
@@ -32,7 +32,7 @@
 
 
     <TextView
-        android:id="@+id/tvSource"
+        android:id="@+id/tvCountryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,13 +40,13 @@
         android:layout_marginTop="1dp"
         android:text="SOURCE"
         android:textColor="@color/colorAccent"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/cvIm"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvCountryCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -60,7 +60,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSource"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountryName"
         app:layout_constraintStart_toEndOf="@+id/cvIm" />
 
     <TextView
@@ -86,12 +86,22 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:maxLength="10"
+        android:layout_marginEnd="5dp"
+        android:textFontWeight="100"
         android:text="PUBLISHED AT"
         android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/ivTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountryCode" />
+
+    <ImageView
+        android:id="@+id/ivTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_wall_clock"
+        android:layout_marginEnd="10dp"
+       android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/tvCountryCode"/>
 
     <LinearLayout
         android:layout_width="match_parent"

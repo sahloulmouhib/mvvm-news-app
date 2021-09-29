@@ -28,7 +28,7 @@ class DrawerActivity : AppCompatActivity() {
            {
                R.id.miCategory-> Toast.makeText(applicationContext,"Clicked ",Toast.LENGTH_SHORT).show()
                R.id.miAccount-> Toast.makeText(applicationContext,"Clicked ",Toast.LENGTH_SHORT).show()
-               R.id.miLanguage-> Toast.makeText(applicationContext,"Clicked ",Toast.LENGTH_SHORT).show()
+               R.id.miCountry-> Toast.makeText(applicationContext,"Clicked ",Toast.LENGTH_SHORT).show()
 
 
            }

@@ -1,8 +1,8 @@
 package com.androiddevs.mvvmnewsapp.ui.fragment
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Toast
@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.adapters.NewsAdapter
-import com.androiddevs.mvvmnewsapp.ui.NewsActivity
+import com.androiddevs.mvvmnewsapp.preferences.SharedPreferences
+import com.androiddevs.mvvmnewsapp.ui.activity.NewsActivity
 import com.androiddevs.mvvmnewsapp.ui.NewsViewModel
 import com.androiddevs.mvvmnewsapp.util.Constants
 import com.androiddevs.mvvmnewsapp.util.Constants.Companion.QUERY_PAGE_SIZE
@@ -22,13 +23,31 @@ import com.androiddevs.mvvmnewsapp.util.Resource
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.android.synthetic.main.fragment_breaking_news.paginationProgressBar
 import kotlinx.android.synthetic.main.fragment_search_news.*
+import java.time.LocalDateTime
+
+
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
-
+    lateinit var category:String
+    lateinit var userSession: SharedPreferences
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
-    val TAG= "an error occured "
+    lateinit var countryCode:String
+    val TAG= "an error occured"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        userSession=SharedPreferences(activity!!)
+        category=userSession.getCategory() ?:"general"
+        tvCategoryName.text="${category.capitalize()} News"
+
+        tvUserName.text="Hey ${userSession.getUser().firstName.capitalize()} ${userSession.getUser().lastName.capitalize()}!"
+        countryCode= userSession.getCountry()?.code ?:"us"
+        getCurrentTime()
+
+
+
 
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,6 +71,9 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             when(response)
             {
                 is Resource.Success -> {
+                    ivNoInternet.visibility=View.GONE
+                    tvNoConnection.visibility=View.GONE
+                    rvBreakingNews.visibility=View.VISIBLE
                     hideProgressBar()
                     response.data?.let{
                         // we need to us a list not mutable list that's why we added toList() it's a bug
@@ -70,6 +92,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                     hideProgressBar()
                     response.message?.let{message ->
                        Toast.makeText(activity,"an Error occured :$message",Toast.LENGTH_LONG).show()
+                        if(message=="Cannot Establish Internet Connection")
+                        {
+                            ivNoInternet.visibility=View.VISIBLE
+                            tvNoConnection.visibility=View.VISIBLE
+                            rvBreakingNews.visibility=View.INVISIBLE
+                        }
                     }
                 }
                 is Resource.Loading ->
@@ -82,12 +110,16 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
 
 
+        // shared preferences
+
+
+
 
         //pull to refresh
         itemsswipetorefresh.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(activity as NewsActivity, R.color.colorPrimary))
         itemsswipetorefresh.setColorSchemeColors(Color.WHITE)
         itemsswipetorefresh.setOnRefreshListener {
-            viewModel.getBreakingNews("us")
+            viewModel.getBreakingNews(countryCode ,category)
            Toast.makeText(activity,"refresh",Toast.LENGTH_SHORT).show()
             itemsswipetorefresh.isRefreshing = false
         }
@@ -124,7 +156,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             val shouldPaginate= isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate)
             {
-                viewModel.getBreakingNews("us")
+                viewModel.getBreakingNews(countryCode ,category)
                 isScrolling =false
             }
             else
@@ -157,6 +189,24 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     {
         paginationProgressBar.visibility= View.VISIBLE
         isLoading=true
+    }
+
+
+    fun getCurrentTime()
+    {
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG,FormatStyle.SHORT)
+            val formatted = current.format(formatter)
+            tvCurrentTime.text="$formatted  "
+
+        } else {
+            tvCurrentTime.text=""
+        }
+
+
     }
 
 }

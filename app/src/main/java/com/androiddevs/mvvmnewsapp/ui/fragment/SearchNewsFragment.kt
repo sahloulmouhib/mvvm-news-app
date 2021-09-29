@@ -1,9 +1,9 @@
 package com.androiddevs.mvvmnewsapp.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.adapters.NewsAdapter
-import com.androiddevs.mvvmnewsapp.ui.NewsActivity
+import com.androiddevs.mvvmnewsapp.ui.activity.NewsActivity
 import com.androiddevs.mvvmnewsapp.ui.NewsViewModel
 import com.androiddevs.mvvmnewsapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.androiddevs.mvvmnewsapp.util.Constants.Companion.SEARCH_NEWS_TIME_DELAY
@@ -29,7 +29,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
-
+    lateinit var sortedBy:String
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter : NewsAdapter
     val TAG="serachNewsFragment"
@@ -40,12 +40,41 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         viewModel=(activity as NewsActivity).viewModel
         setupRecyclerView()
 
+
+
+
+        spSortBy.onItemSelectedListener =object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) { sortedBy=when(position)
+            {
+                1 ->"relevancy"
+                2->"popularity"
+                else ->"publishedAt"
+            }
+
+                //Toast.makeText(activity!!,"You selected ${parent?.getItemAtPosition(position).toString()}",Toast.LENGTH_LONG).show()
+
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
         newsAdapter.setOnItemClickListener {
             val bundle=Bundle().apply {
                 putSerializable("article",it)
             }
             findNavController().navigate(R.id.action_searchNewsFragment_to_articleFragment,bundle)
         }
+
+
 
 
         var job: Job? = null
@@ -58,7 +87,8 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                     {
 
 
-                        viewModel.searchNews(editable.toString())
+                        viewModel.searchNews(editable.toString(),sortedBy)
+                        //ivSearch.visibility=View.GONE
                     }
                 }
             }
@@ -73,6 +103,10 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                     hideProgressBar()
                     response.data?.let{
                             newsResponse ->  newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        if(newsResponse.articles.isNotEmpty())
+                        {
+                            ivSearch.visibility=View.GONE
+                        }
                             val length=newsResponse.articles.toList().size
                         val totalPages= newsResponse.totalResults /QUERY_PAGE_SIZE +2
                         // we reached the last page of the first list of articles so we need to load other articles
@@ -129,7 +163,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
             val shouldPaginate= isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate)
             {
-                viewModel.searchNews(etSearch.text.toString())
+                viewModel.searchNews(etSearch.text.toString(),sortedBy)
                 isScrolling =false
             }
 

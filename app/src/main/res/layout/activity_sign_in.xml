@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SignInActivity"
+    tools:context=".ui.activity.SignInActivity"
 
     android:layout_marginTop="10dp"
     android:layout_marginLeft="20dp"
@@ -17,31 +17,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <TextView
-            android:layout_margin="20dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="40dp"
-            android:text="TheNews"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
 
-        <com.airbnb.lottie.LottieAnimationView
+                android:layout_gravity="center_vertical"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ic_mainicon"
+                />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="right"
+                android:text="TheNews"
+                android:textColor="@color/black"
+                android:textSize="40dp"
+                android:textStyle="normal" />
+
+
+        </LinearLayout>
+
+
+        <ImageView
             android:layout_gravity="center"
             android:id="@+id/animationView"
-            android:layout_width="200dp"
+            app:srcCompat="@drawable/ic_undraw_login"
+            android:layout_width="300dp"
             android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/singin"
+
+           android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:visibility="gone"
             android:drawableLeft="@drawable/ic_facebook"
             android:textStyle="bold"
             android:textAllCaps="false"
@@ -51,6 +70,7 @@
             android:layout_height="60dp"
             android:text="   Continue with Facebook" />
         <com.google.android.material.button.MaterialButton
+            android:visibility="gone"
             android:drawableLeft="@drawable/ic_twitter"
             android:textStyle="bold"
             android:textAllCaps="false"
@@ -69,6 +89,8 @@
             />
 
         <TextView
+            android:textFontWeight="700"
+            android:fontFamily="@font/montserrat_bold"
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +106,7 @@
             app:layout_constraintVertical_bias="0.959" />
 
         <com.google.android.material.textfield.TextInputLayout
-
+            android:layout_marginBottom="10dp"
             android:id="@+id/etEmailAddress"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -103,6 +125,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/etPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -129,17 +152,19 @@
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.button.MaterialButton
 
+
             android:layout_marginTop="10dp"
             app:cornerRadius="20dp"
             android:backgroundTint="@color/accent"
             android:textColor="@color/white"
-            android:id="@+id/button"
+            android:id="@+id/btnSignIn"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Sign in" />
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -171,20 +196,7 @@
 
 
         </LinearLayout>
-        <TextView
-            android:id="@+id/tvTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="  Create an account"
-            android:textColor="#2196F3"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.129"
-            app:layout_constraintStart_toEndOf="@+id/tvNotRegistered"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-            app:layout_constraintVertical_bias="0.0" />
+
 
 
 

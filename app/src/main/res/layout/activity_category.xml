@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="16dp">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -30,11 +30,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:id="@+id/ivBackCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_left_arrow" />
+                app:srcCompat="@drawable/ic_backarrow" />
 
             <TextView
                 android:id="@+id/tvCategory"
@@ -69,7 +71,7 @@
 
 
             app:rippleColor="@color/white"
-            android:id="@+id/cvGeneral1"
+            android:id="@+id/cvGeneralMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -82,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 android:orientation="horizontal"
                 android:padding="18dp">
 
@@ -93,7 +95,7 @@
                     app:srcCompat="@drawable/ic_news" />
 
                 <TextView
-
+                    android:id="@+id/tvGeneral"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,14 +112,14 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
 
-            android:id="@+id/cvGenerals"
+            android:id="@+id/cvSports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -127,7 +129,7 @@
 
             <LinearLayout
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="18dp"
@@ -140,6 +142,7 @@
                     app:srcCompat="@drawable/ic_basketball_ball" />
 
                 <TextView
+                    android:id="@+id/tvSports"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -157,7 +160,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -165,7 +168,7 @@
 
         <com.google.android.material.card.MaterialCardView
 
-            android:id="@+id/cvGeneral"
+            android:id="@+id/cvBusiness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -177,7 +180,7 @@
 
             <LinearLayout
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 app:rippleColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,6 +194,7 @@
                     app:srcCompat="@drawable/ic_briefcase1" />
 
                 <TextView
+                    android:id="@+id/tvBusiness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -208,14 +212,14 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
 
-            android:id="@+id/cvGeneral"
+            android:id="@+id/cvEntertainment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -226,7 +230,7 @@
 
             <LinearLayout
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="18dp"
@@ -239,6 +243,7 @@
                     app:srcCompat="@drawable/ic_clapperboard__1_" />
 
                 <TextView
+                    android:id="@+id/tvEntertainment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -255,14 +260,14 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
 
-            android:id="@+id/cvGeneral"
+            android:id="@+id/cvHealth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -272,7 +277,7 @@
 
             <LinearLayout
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="18dp"
@@ -285,6 +290,7 @@
                     app:srcCompat="@drawable/ic_heart" />
 
                 <TextView
+                    android:id="@+id/tvHealth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Health"
@@ -301,7 +307,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -309,7 +315,7 @@
 
         <com.google.android.material.card.MaterialCardView
 
-            android:id="@+id/cvGeneral"
+            android:id="@+id/cvScience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -319,7 +325,7 @@
 
             <LinearLayout
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="18dp"
@@ -332,6 +338,7 @@
                     app:srcCompat="@drawable/ic_flask__1_" />
 
                 <TextView
+                    android:id="@+id/tvScience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -348,7 +355,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -356,7 +363,7 @@
 
         <com.google.android.material.card.MaterialCardView
 
-            android:id="@+id/cvGeneral"
+            android:id="@+id/cvTechnology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
@@ -369,7 +376,7 @@
             <LinearLayout
 
                 android:background="@drawable/custom_ripple"
-                android:clickable="true"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="18dp"
@@ -382,6 +389,7 @@
                     app:srcCompat="@drawable/ic_lightbulb" />
 
                 <TextView
+                    android:id="@+id/tvTechnology"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -398,7 +406,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:contentDescription="lorum ipsum lorum ipsum"
                     android:rotation="180"
-                    app:srcCompat="@drawable/ic_right_arrow" />
+                    app:srcCompat="@drawable/ic_backarrow" />
 
 
             </LinearLayout>

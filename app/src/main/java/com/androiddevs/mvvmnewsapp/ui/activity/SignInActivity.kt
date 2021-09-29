@@ -1,5 +1,6 @@
-package com.androiddevs.mvvmnewsapp.ui
+package com.androiddevs.mvvmnewsapp.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.androiddevs.mvvmnewsapp.R
@@ -12,11 +13,18 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
         val userSession=SharedPreferences(applicationContext);
-        val user= User()
-        userSession.storeUser(user)
-        val s=userSession.getUser().email
-         etEmailAddress.editText?.setText(s)
+        //val user= User()
+       // userSession.storeUser(user)
+        btnSignIn.setOnClickListener {
+            Intent(applicationContext, NewsActivity::class.java).also {
+                startActivity(it)}
+        }
+    tvCreateAccount.setOnClickListener {
+        Intent(applicationContext, SignUpActivity::class.java).also {
+            startActivity(it)}
     }
+    }
+
 
 
 

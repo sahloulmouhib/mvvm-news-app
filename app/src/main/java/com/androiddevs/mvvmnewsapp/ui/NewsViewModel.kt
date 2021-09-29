@@ -47,13 +47,13 @@ class NewsViewModel  (
 
     }
 
-    fun getBreakingNews(countryCode: String) = viewModelScope.launch {
+    fun getBreakingNews(countryCode: String,category: String) = viewModelScope.launch {
        /* breakingNews.postValue(Resource.Loading())
         val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
         breakingNews.postValue(handleBreakingNewsResponse(response))
 
         */
-        safeBreakingNewsCall(countryCode)
+        safeBreakingNewsCall(countryCode,category)
     }
 
     //we need to modify it to make the pagination
@@ -79,13 +79,13 @@ class NewsViewModel  (
 
 
 
-    fun searchNews(searchQuery: String) = viewModelScope.launch {
+    fun searchNews(searchQuery: String,sortBy:  String) = viewModelScope.launch {
        /* searchNews.postValue(Resource.Loading())
         val response = newsRepository.searchNews(searchQuery,searchNewsPage)
         searchNews.postValue(handleSearchNewsResponse(response))
 
         */
-        safeSearchNewsCall(searchQuery)
+        safeSearchNewsCall(searchQuery,sortBy)
     }
 
 
@@ -143,12 +143,12 @@ class NewsViewModel  (
 
 
     //*****error messages*******
-    private suspend fun safeBreakingNewsCall(countryCode:String){
+    private suspend fun safeBreakingNewsCall(countryCode:String,category: String){
     breakingNews.postValue(Resource.Loading())
     try{
         if(hasInternetConnection())
         {
-            val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
+            val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage,category)
             breakingNews.postValue(handleBreakingNewsResponse(response))
         }
         else{
@@ -168,12 +168,12 @@ class NewsViewModel  (
     }
 
 
-    private suspend fun safeSearchNewsCall(searchQuery: String) {
+    private suspend fun safeSearchNewsCall(searchQuery: String,sortBy:String) {
         newSearchQuery = searchQuery
         searchNews.postValue(Resource.Loading())
         try {
             if(hasInternetConnection()) {
-                val response = newsRepository.searchNews(searchQuery, searchNewsPage)
+                val response = newsRepository.searchNews(searchQuery, searchNewsPage,sortBy)
                 searchNews.postValue(handleSearchNewsResponse(response))
             } else {
                 searchNews.postValue(Resource.Error("No internet connection"))

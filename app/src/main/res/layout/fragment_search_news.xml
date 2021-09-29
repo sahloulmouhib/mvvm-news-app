@@ -4,17 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="16dp"
     android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp">
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp">
+
+    <ImageView
+        android:id="@+id/ivSearch"
+        android:layout_width="230dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llMain"
+        app:layout_constraintVertical_bias="0.186"
+        app:srcCompat="@drawable/ic_newspaper" />
 
     <LinearLayout
 
-        android:orientation="vertical"
         android:id="@+id/llMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/rvSearchNews"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -34,21 +49,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="News from all over the world"
             android:layout_marginBottom="20dp"
+            android:text="News from all over the world"
             android:textSize="12dp"
             android:textStyle="bold" />
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginBottom="30dp"
-            app:boxCornerRadiusBottomEnd="10dp"
-            app:boxCornerRadiusBottomStart="10dp"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Search">
+            android:layout_marginBottom="20dp"
+            android:hint="Search for news"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp">
 
             <EditText
 
@@ -58,7 +74,24 @@
                 android:drawableRight="@drawable/ic_search_2"
                 android:inputType="text" />
 
+
+
+                <Spinner
+                    android:layout_gravity="right"
+                    android:padding="5dp"
+                    android:pointerIcon="crosshair"
+                    android:id="@+id/spSortBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+
+                    android:entries="@array/sort_by" />
+
+
+
         </com.google.android.material.textfield.TextInputLayout>
+
 
     </LinearLayout>
 
@@ -71,7 +104,7 @@
         android:paddingBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llMain" />
 

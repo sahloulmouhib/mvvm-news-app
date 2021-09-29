@@ -13,20 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SignInActivity">
+        <activity android:name=".ui.activity.CountryActivity">
+
+        </activity>
+        <activity android:name=".ui.activity.SignUpActivity" />
+        <activity android:name=".ui.activity.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CategoryActivity" />
+        <activity android:name=".ui.activity.CategoryActivity" />
         <activity android:name=".DrawerActivity" />
         <activity android:name=".TempActivity" />
-        <activity android:name=".ui.NewsActivity">
-
-
-        </activity>
+        <activity android:name=".ui.activity.NewsActivity"></activity>
     </application>
 
 </manifest>

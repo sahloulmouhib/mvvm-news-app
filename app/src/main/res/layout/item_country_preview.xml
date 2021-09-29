@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="0dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvIm"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPublishedAt"
+        app:layout_constraintCircleRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+
+            app:srcCompat="@drawable/argentina"
+            android:id="@+id/ivCountryFlag"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+           />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/tvCountryName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="1dp"
+        android:text="SOURCE"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/cvIm"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCountryCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:text="TITLE"
+
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountryName"
+        app:layout_constraintStart_toEndOf="@+id/cvIm" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:text="DESCRIPTION"
+        android:textColor="@android:color/black"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cvIm"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.618" />
+
+    <TextView
+
+        android:id="@+id/tvPublishedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="5dp"
+        android:textFontWeight="100"
+        android:text="PUBLISHED AT"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/ivTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvCountryCode" />
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/ivTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_wall_clock"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCountryCode"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#e3e2e1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvIm"
+        app:layout_constraintVertical_bias="0.4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

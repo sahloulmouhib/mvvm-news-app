@@ -8,8 +8,8 @@
 
 
     <item
-        android:id="@+id/miLanguage"
-        android:title="Langage"
+        android:id="@+id/miCountry"
+        android:title="Country"
         android:icon="@drawable/ic_language"/>
 
     <item

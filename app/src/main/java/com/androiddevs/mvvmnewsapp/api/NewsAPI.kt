@@ -20,6 +20,8 @@ interface NewsAPI {
         @Query("apikey")
          apikey : String=API_KEY
 
+
+
     ): Response<NewsResponse>
 
     @GET("v2/everything")
@@ -29,6 +31,8 @@ interface NewsAPI {
         searchQuery: String,
         @Query("page")
         pageNumber :Int=1,
+        @Query("sortBy")
+        sortBy:String="publishedAt",
         @Query("apikey")
         apikey : String=API_KEY
 

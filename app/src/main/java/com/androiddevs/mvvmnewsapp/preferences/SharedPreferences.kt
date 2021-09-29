@@ -2,6 +2,7 @@ package com.androiddevs.mvvmnewsapp.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.androiddevs.mvvmnewsapp.models.Country
 import com.androiddevs.mvvmnewsapp.models.User
 import com.google.gson.Gson
 import java.util.*
@@ -13,6 +14,43 @@ class SharedPreferences(var context: Context)
     var editor: SharedPreferences.Editor
 
 
+
+
+    fun storeCountry(country:Country)
+    {
+
+        val gson = Gson()
+        val json = gson.toJson(country) // myObject - instance of MyObject
+
+        editor.putString(COUNTRY, json)
+        editor.apply()
+    }
+    fun getCountry(): Country {
+        val gson = Gson()
+        val json: String? = usersSession.getString(COUNTRY, "")
+        return  gson.fromJson(json, Country::class.java)
+    }
+
+
+
+
+
+
+
+
+
+
+    fun storeCountryCode(countryCode :String)
+    {
+        editor.putString(KEY_COUNTRY_CODE,countryCode)
+        editor.apply()
+    }
+
+
+    fun getCountryCode ():String?
+    {
+        return usersSession.getString(KEY_COUNTRY_CODE,"us")
+    }
 
 
     fun  storeUser(user : User)
@@ -29,6 +67,17 @@ class SharedPreferences(var context: Context)
         val gson = Gson()
         val json: String? = usersSession.getString(USER, "")
         return gson.fromJson(json, User::class.java)
+    }
+
+    fun storeGategory(category:String?)
+    {
+        editor.putString(KEY_CATEGORY, category)
+        editor.apply()
+    }
+
+    fun getCategory ():String?
+    {
+      return usersSession.getString(KEY_CATEGORY,"general")
     }
 
 
@@ -88,6 +137,9 @@ class SharedPreferences(var context: Context)
         const val KEY_FAMILYMEMBER = "familyMember"
         const val KEY_LOCKANDUNLOCKSTATE = "lock"
         const val USER="object"
+        const val COUNTRY="object"
+        const val KEY_CATEGORY="none"
+        const val KEY_COUNTRY_CODE="us"
     }
 
     init {

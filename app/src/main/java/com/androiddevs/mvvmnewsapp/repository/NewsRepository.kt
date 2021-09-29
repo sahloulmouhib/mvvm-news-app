@@ -10,8 +10,8 @@ class NewsRepository(
 ) {
 
     //suspend funs that calls the api to get the needed information
-    suspend fun getBreakingNews(countryCode : String, pageNumber: Int)=RetrofitInstance.api.getBreakingNews(countryCode,pageNumber)
-    suspend fun searchNews(searchQuery: String, pageNumber:Int)=RetrofitInstance.api.searchNews(searchQuery,pageNumber)
+    suspend fun getBreakingNews(countryCode : String, pageNumber: Int,category:String="general")=RetrofitInstance.api.getBreakingNews(countryCode,pageNumber,category)
+    suspend fun searchNews(searchQuery: String, pageNumber:Int,sortBy: String="publishedAt")=RetrofitInstance.api.searchNews(searchQuery,pageNumber,sortBy)
 
     //removing and adding articles to the room database
     suspend fun  upsert(article : Article) = db.getArticleDao().upsert(article)
